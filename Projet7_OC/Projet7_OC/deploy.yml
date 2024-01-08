@@ -1,0 +1,17 @@
+app_path: /home/ubuntu/Projet7_OC/app.py
+dashboard_path: /home/ubuntu/Projet7_OC/dashboard.py
+test_path: /home/ubuntu/Projet7_OC/test_unit.py
+
+deployment_steps:
+  - name: create virtual environment
+    command: python3 -m venv venv
+  - name: install dependencies
+    command: pip install -r requirements.txt
+  - name: start app
+    command: python3 app.py &
+  - name: wait for startup
+    command: sleep 5
+  - name: run unit tests
+    command: pytest test_unit.py
+  - name: Start dashboard
+    command: streamlit run dashboard.py
